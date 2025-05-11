@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Secure CodesGen Generator</title>
   <style>
     html, body {
@@ -10,11 +10,10 @@
       background: #000;
       color: #fff;
       font-family: Arial, sans-serif;
-      overflow: hidden;
     }
 
     #welcomeScreen, #adblockWarning {
-      display: flex;
+      display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -34,129 +33,71 @@
       margin-top: 20px;
     }
 
-    #generatorFrame {
-      position: absolute;
-      top: 0;
-      left: 0;
+    iframe {
+      display: none;
       width: 100vw;
       height: 100vh;
       border: none;
-      display: none;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      z-index: 2;
     }
 
-    #spinner {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 50px;
-      height: 50px;
-      margin: -25px 0 0 -25px;
-      border: 6px solid #fff;
-      border-top: 6px solid #09f;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      z-index: 1;
-      display: none;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .ad-test {
-      width: 1px;
+    .ad-banner {
       height: 1px;
+      width: 1px;
       position: absolute;
-      left: -999px;
-      top: -999px;
+      top: -9999px;
     }
   </style>
 </head>
 <body>
-  <div id="adblockWarning" style="display: none;">
-    <h1>AdBlock Detected</h1>
-    <p>Please disable your adblocker or DNS filter (e.g., <strong>dns.adguard.com</strong>) to access this page.</p>
-    <button id="retryButton" onclick="checkAdblock()">Retry</button>
+  <div id="adblockWarning">
+    <h1>AdBlocker Detected</h1>
+    <p>Please disable AdBlock or DNS filter (like AdGuard, NextDNS) to continue.</p>
+    <button id="retryButton">Retry</button>
   </div>
 
   <div id="welcomeScreen">
     <h1>Welcome to Secure CodesGen</h1>
-    <p>Click below to launch the generator in full page.</p>
-    <button id="showButton" onclick="showGenerator()">Launch Generator</button>
+    <p>Click below to launch the generator in fullscreen mode.</p>
+    <button id="showButton">Launch Generator</button>
   </div>
 
-  <div id="spinner"></div>
   <iframe id="generatorFrame" src=""></iframe>
 
-  <div class="ad-test" id="adsTest">
+  <div class="ad-banner" id="ad-test">
     <script>
-      // This script element is likely to be blocked by ad blockers
-      (function(){
-        var ad = document.createElement('div');
-        ad.className = 'adsbox';
-        document.getElementById('adsTest').appendChild(ad);
-      })();
+      var testAd = document.createElement("div");
+      testAd.className = "adsbox";
+      testAd.style.height = "1px";
+      document.getElementById("ad-test").appendChild(testAd);
     </script>
   </div>
 
   <script>
-    function checkAdblock() {
-      const adTest = document.querySelector('.adsbox');
-      if (!adTest || adTest.offsetHeight === 0) {
-        document.getElementById('welcomeScreen').style.display = 'none';
-        document.getElementById('adblockWarning').style.display = 'flex';
+    function detectAdblock() {
+      const test = document.querySelector(".adsbox");
+      if (!test || test.offsetHeight === 0 || window.getComputedStyle(test).display === "none") {
+        // Adblock detected
+        document.getElementById("adblockWarning").style.display = "flex";
       } else {
-        document.getElementById('adblockWarning').style.display = 'none';
-        document.getElementById('welcomeScreen').style.display = 'flex';
+        // No adblock
+        document.getElementById("welcomeScreen").style.display = "flex";
       }
     }
 
-    function showGenerator() {
-      const frame = document.getElementById('generatorFrame');
-      const spinner = document.getElementById('spinner');
+    document.getElementById("retryButton").onclick = () => {
+      location.reload(); // Reload page to recheck
+    };
 
-      spinner.style.display = 'block';
-      frame.src = "https://codesgen.nerodeadly.workers.dev/";
-      frame.style.display = 'block';
+    document.getElementById("showButton").onclick = () => {
+      document.getElementById("welcomeScreen").style.display = "none";
+      const iframe = document.getElementById("generatorFrame");
+      iframe.src = "https://codesgen.nerodeadly.workers.dev/";
+      iframe.style.display = "block";
+    };
 
-      frame.onload = () => {
-        spinner.style.display = 'none';
-        frame.style.opacity = '1';
-      };
-
-      document.getElementById('welcomeScreen').remove();
-    }
-
-    // Detect adblock on load
-    window.onload = checkAdblock;
-
-    // Block right-click
-    document.addEventListener("contextmenu", e => e.preventDefault());
-
-    // Disable DevTools shortcuts
-    document.addEventListener("keydown", function (e) {
-      if (
-        e.key === "F12" ||
-        (e.ctrlKey && e.shiftKey && ['I', 'C', 'J'].includes(e.key.toUpperCase())) ||
-        (e.ctrlKey && e.key.toUpperCase() === 'U')
-      ) {
-        e.preventDefault();
-      }
+    window.addEventListener("load", () => {
+      setTimeout(detectAdblock, 300); // Delay to let script load fully
     });
-
-    // Detect DevTools open
-    setInterval(() => {
-      if (
-        window.outerWidth - window.innerWidth > 160 ||
-        window.outerHeight - window.innerHeight > 160
-      ) {
-        document.body.innerHTML = "<h1>DevTools are blocked.</h1>";
-      }
-    }, 1000);
   </script>
 </body>
 </html>
