@@ -13,7 +13,7 @@
       overflow: hidden;
     }
 
-    #welcomeScreen {
+    #welcomeScreen, #adblockWarning {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -23,7 +23,7 @@
       padding: 20px;
     }
 
-    #showButton {
+    #showButton, #retryButton {
       padding: 12px 24px;
       font-size: 18px;
       background-color: #1e1e1e;
@@ -66,37 +66,60 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+
+    .ad-test {
+      width: 1px;
+      height: 1px;
+      position: absolute;
+      left: -999px;
+      top: -999px;
+    }
   </style>
 </head>
 <body>
+  <div id="adblockWarning" style="display: none;">
+    <h1>AdBlock Detected</h1>
+    <p>Please disable your adblocker or DNS filter (e.g., <strong>dns.adguard.com</strong>) to access this page.</p>
+    <button id="retryButton" onclick="checkAdblock()">Retry</button>
+  </div>
+
   <div id="welcomeScreen">
     <h1>Welcome to Secure CodesGen</h1>
-    <p>Click the button below to launch the Premium Generator in full page.</p>
-
-    <ins class="adsbygoogle"
-      style="display:block"
-      data-ad-client="ca-pub-9160117914244177"
-      data-ad-slot="7129714233"
-      data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9160117914244177" crossorigin="anonymous"></script>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
+    <p>Click below to launch the generator in full page.</p>
     <button id="showButton" onclick="showGenerator()">Launch Generator</button>
   </div>
 
   <div id="spinner"></div>
   <iframe id="generatorFrame" src=""></iframe>
 
+  <div class="ad-test" id="adsTest">
+    <script>
+      // This script element is likely to be blocked by ad blockers
+      (function(){
+        var ad = document.createElement('div');
+        ad.className = 'adsbox';
+        document.getElementById('adsTest').appendChild(ad);
+      })();
+    </script>
+  </div>
+
   <script>
+    function checkAdblock() {
+      const adTest = document.querySelector('.adsbox');
+      if (!adTest || adTest.offsetHeight === 0) {
+        document.getElementById('welcomeScreen').style.display = 'none';
+        document.getElementById('adblockWarning').style.display = 'flex';
+      } else {
+        document.getElementById('adblockWarning').style.display = 'none';
+        document.getElementById('welcomeScreen').style.display = 'flex';
+      }
+    }
+
     function showGenerator() {
       const frame = document.getElementById('generatorFrame');
       const spinner = document.getElementById('spinner');
 
-      // Show spinner
       spinner.style.display = 'block';
-
-      // Set src and listen for load
       frame.src = "https://codesgen.nerodeadly.workers.dev/";
       frame.style.display = 'block';
 
@@ -108,10 +131,13 @@
       document.getElementById('welcomeScreen').remove();
     }
 
+    // Detect adblock on load
+    window.onload = checkAdblock;
+
     // Block right-click
     document.addEventListener("contextmenu", e => e.preventDefault());
 
-    // Disable common DevTools shortcuts
+    // Disable DevTools shortcuts
     document.addEventListener("keydown", function (e) {
       if (
         e.key === "F12" ||
@@ -122,7 +148,7 @@
       }
     });
 
-    // Detect DevTools
+    // Detect DevTools open
     setInterval(() => {
       if (
         window.outerWidth - window.innerWidth > 160 ||
