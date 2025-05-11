@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Secure CodesGen Generator</title>
   <style>
     html, body {
@@ -10,19 +10,20 @@
       background: #000;
       color: #fff;
       font-family: Arial, sans-serif;
-    }
-
-    #welcomeScreen, #adblockWarning {
-      display: none;
+      display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
+      justify-content: start;
       padding: 20px;
+      box-sizing: border-box;
     }
 
-    #showButton, #retryButton {
+    #welcome {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #showButton {
       padding: 12px 24px;
       font-size: 18px;
       background-color: #1e1e1e;
@@ -30,74 +31,83 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
-    iframe {
-      display: none;
-      width: 100vw;
-      height: 100vh;
+    #generatorFrame {
+      width: 100%;
+      height: 100%;
       border: none;
-    }
-
-    .ad-banner {
-      height: 1px;
-      width: 1px;
-      position: absolute;
-      top: -9999px;
+      display: none;
     }
   </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9160117914244177"
+     crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-9160117914244177">
 </head>
 <body>
-  <div id="adblockWarning">
-    <h1>AdBlocker Detected</h1>
-    <p>Please disable AdBlock or DNS filter (like AdGuard, NextDNS) to continue.</p>
-    <button id="retryButton">Retry</button>
-  </div>
-
-  <div id="welcomeScreen">
+  <!-- Welcome Message -->
+  <div id="welcome">
     <h1>Welcome to Secure CodesGen</h1>
-    <p>Click below to launch the generator in fullscreen mode.</p>
-    <button id="showButton">Launch Generator</button>
+    <p>Click the button below to launch the Premium Generator securely.</p>
   </div>
 
+  <!-- Ad -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9160117914244177"
+     data-ad-slot="7129714233"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+  <!-- Show Button -->
+  <button id="showButton" onclick="showGenerator()">Launch Generator</button>
+
+  <!-- Generator Iframe -->
   <iframe id="generatorFrame" src=""></iframe>
 
-  <div class="ad-banner" id="ad-test">
-    <script>
-      var testAd = document.createElement("div");
-      testAd.className = "adsbox";
-      testAd.style.height = "1px";
-      document.getElementById("ad-test").appendChild(testAd);
-    </script>
-  </div>
+  <!-- Second Ad -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="fluid"
+     data-ad-layout-key="-fb+5w+4e-db+86"
+     data-ad-client="ca-pub-9160117914244177"
+     data-ad-slot="3767252947"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
   <script>
-    function detectAdblock() {
-      const test = document.querySelector(".adsbox");
-      if (!test || test.offsetHeight === 0 || window.getComputedStyle(test).display === "none") {
-        // Adblock detected
-        document.getElementById("adblockWarning").style.display = "flex";
-      } else {
-        // No adblock
-        document.getElementById("welcomeScreen").style.display = "flex";
-      }
+    function showGenerator() {
+      const iframe = document.getElementById('generatorFrame');
+      iframe.src = "https://codesgen.nerodeadly.workers.dev/";
+      iframe.style.display = 'block';
+      document.getElementById('showButton').style.display = 'none';
+      document.getElementById('welcome').style.display = 'none';
     }
 
-    document.getElementById("retryButton").onclick = () => {
-      location.reload(); // Reload page to recheck
-    };
+    // Block right-click
+    document.addEventListener("contextmenu", e => e.preventDefault());
 
-    document.getElementById("showButton").onclick = () => {
-      document.getElementById("welcomeScreen").style.display = "none";
-      const iframe = document.getElementById("generatorFrame");
-      iframe.src = "https://codesgen.nerodeadly.workers.dev/";
-      iframe.style.display = "block";
-    };
-
-    window.addEventListener("load", () => {
-      setTimeout(detectAdblock, 300); // Delay to let script load fully
+    // Disable common DevTools shortcuts
+    document.addEventListener("keydown", function (e) {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && ['I', 'C', 'J'].includes(e.key.toUpperCase())) ||
+        (e.ctrlKey && e.key.toUpperCase() === 'U')
+      ) {
+        e.preventDefault();
+      }
     });
+
+    // Detect DevTools
+    setInterval(() => {
+      if (
+        window.outerWidth - window.innerWidth > 160 ||
+        window.outerHeight - window.innerHeight > 160
+      ) {
+        document.body.innerHTML = "<h1>DevTools are blocked.</h1>";
+      }
+    }, 1000);
   </script>
 </body>
 </html>
