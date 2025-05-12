@@ -68,14 +68,14 @@
   </div>
 
   <script>
-    let countdown = 10;
+    let countdown = 20;
     const countdownEl = document.getElementById("countdown");
     const adContainer = document.getElementById("adContainer");
     const iframeContainer = document.getElementById("iframeContainer");
     const mainIframe = document.getElementById("mainIframe");
 
     const targetUrl = "https://codesgen.nerodeadly.workers.dev/";
-    const proxyUrl = "https://antiadblock.nerodeadly.workers.dev/?url=" + encodeURIComponent(targetUrl);
+    const proxyUrl = "https://antiadblock.nerodeadly.workers.dev/?url=https://codesgen.nerodeadly.workers.dev/" + encodeURIComponent(targetUrl);
 
     const timer = setInterval(() => {
       countdown--;
