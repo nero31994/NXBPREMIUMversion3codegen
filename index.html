@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Secure CodesGen Generator</title>
   <style>
     html, body {
@@ -14,33 +15,59 @@
       justify-content: center;
       overflow: hidden;
       color: white;
+      text-align: center;
     }
 
     .btn-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 1.5vh;
+      padding: 2vh;
+      max-width: 90vw;
     }
 
     #adFrame {
-      width: 300px;
-      height: 250px;
+      width: 80vw;
+      max-width: 320px;
+      height: auto;
+      aspect-ratio: 6 / 5;
       border: none;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-      margin-bottom: 10px;
+    }
+
+    #countdownText {
+      font-size: 1em;
+      color: #ccc;
+    }
+
+    #progressBarContainer {
+      width: 80%;
+      max-width: 300px;
+      height: 12px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    #progressBar {
+      height: 100%;
+      width: 0%;
+      background: #00c9ff;
+      transition: width 1s linear;
     }
 
     #continueBtn {
-      padding: 10px 20px;
+      padding: 1em 2em;
       background-color: #00c9ff;
       border: none;
       border-radius: 8px;
       color: white;
-      font-size: 16px;
+      font-size: 1.2em;
       cursor: pointer;
       transition: all 0.3s ease;
+      display: none;
     }
 
     #iframeContainer {
@@ -55,17 +82,38 @@
 
     #iframeContainer iframe {
       width: 100%;
-      height: 50%;
+      height: 100%;
       border: none;
     }
+
+    @media (orientation: landscape) {
+      .btn-wrapper {
+        flex-direction: row;
+        gap: 4vw;
+      }
+
+      #adFrame {
+        aspect-ratio: 4 / 3;
+      }
+    }
+
+    @media (max-width: 600px) {
+      #continueBtn {
+        font-size: 1em;
+        padding: 0.8em 1.5em;
+      }
+    }
   </style>
-  
 </head>
 <body>
-  <script async="async" data-cfasync="false" src="//inactionaccompanyingstress.com/a9f427f3195e168520ca7d5eab7d60ab/invoke.js"></script>
-<div id="container-a9f427f3195e168520ca7d5eab7d60ab"></div>
+  <script async data-cfasync="false" src="//inactionaccompanyingstress.com/a9f427f3195e168520ca7d5eab7d60ab/invoke.js"></script>
+  <div id="container-a9f427f3195e168520ca7d5eab7d60ab"></div>
+
   <div class="btn-wrapper" id="adContainer">
-    <!-- Ad will be inserted here dynamically -->
+    <div id="countdownText">Please wait 10 seconds...</div>
+    <div id="progressBarContainer">
+      <div id="progressBar"></div>
+    </div>
     <button id="continueBtn">Continue</button>
   </div>
 
@@ -77,28 +125,45 @@
     const adContainer = document.getElementById("adContainer");
     const continueBtn = document.getElementById("continueBtn");
     const iframeContainer = document.getElementById("iframeContainer");
+    const countdownText = document.getElementById("countdownText");
+    const progressBar = document.getElementById("progressBar");
 
-    // Dynamically add ad iframe
+    // Add ad iframe
     const adIframe = document.createElement("iframe");
     adIframe.id = "adFrame";
     adIframe.src = "https://inactionaccompanyingstress.com/bc06hn34?key=bf7b6fc53def24908198132a0f1184b7";
     adIframe.loading = "lazy";
-    adContainer.insertBefore(adIframe, continueBtn);
+    adContainer.insertBefore(adIframe, countdownText);
+
+    // Countdown logic
+    let timeLeft = 10;
+    const countdownInterval = setInterval(() => {
+      timeLeft--;
+      progressBar.style.width = `${(10 - timeLeft) * 10}%`;
+      countdownText.textContent = `Please wait ${timeLeft} second${timeLeft !== 1 ? 's' : ''}...`;
+      if (timeLeft <= 0) {
+        clearInterval(countdownInterval);
+        countdownText.style.display = "none";
+        progressBar.parentElement.style.display = "none";
+        continueBtn.style.display = "inline-block";
+      }
+    }, 1000);
 
     continueBtn.addEventListener("click", () => {
       adContainer.style.display = "none";
       iframeContainer.style.display = "block";
     });
   </script>
+
   <script type="text/javascript">
-	atOptions = {
-		'key' : '376293d85afc3b64b211db8d474defb5',
-		'format' : 'iframe',
-		'height' : 60,
-		'width' : 468,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//inactionaccompanyingstress.com/376293d85afc3b64b211db8d474defb5/invoke.js"></script>
+    atOptions = {
+      'key' : '376293d85afc3b64b211db8d474defb5',
+      'format' : 'iframe',
+      'height' : 60,
+      'width' : 468,
+      'params' : {}
+    };
+  </script>
+  <script type="text/javascript" src="//inactionaccompanyingstress.com/376293d85afc3b64b211db8d474defb5/invoke.js"></script>
 </body>
 </html>
