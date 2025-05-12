@@ -3,100 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <title>Secure CodesGen Generator</title>
-	<script async="async" data-cfasync="false" src="//inactionaccompanyingstress.com/9ff070917847d028571f7d0d5ca82078/invoke.js"></script>
-<div id="container-9ff070917847d028571f7d0d5ca82078"></div>
   <style>
-    html, body {
+    * {
       margin: 0;
-      height: 100%;
-      background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: start;
-      padding: 20px;
+      padding: 0;
       box-sizing: border-box;
     }
 
-    #welcome {
-      text-align: center;
-      margin-bottom: 20px;
+    html, body {
+      height: 100%;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
 
-    #showButton {
-      padding: 12px 24px;
-      font-size: 18px;
-      background-color: #1e1e1e;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-bottom: 20px;
+    .glass-container {
+      width: 90%;
+      height: 90%;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      animation: fadeIn 1.2s ease-out;
     }
 
-    #generatorFrame {
+    iframe {
       width: 100%;
       height: 100%;
       border: none;
-      display: none;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.97);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
   </style>
-	<script type="text/javascript">
-	atOptions = {
-		'key' : '376293d85afc3b64b211db8d474defb5',
-		'format' : 'iframe',
-		'height' : 60,
-		'width' : 468,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//inactionaccompanyingstress.com/376293d85afc3b64b211db8d474defb5/invoke.js"></script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9160117914244177"
-     crossorigin="anonymous"></script>
-  <meta name="google-adsense-account" content="ca-pub-9160117914244177">
 </head>
 <body>
-  <!-- Welcome Message -->
-  <div id="welcome">
-    <h1>Welcome to Secure CodesGen</h1>
-    <p>Click the button below to launch the Premium Generator securely.</p>
+  <div class="glass-container">
+    <iframe src="https://codesgen.nerodeadly.workers.dev/"></iframe>
   </div>
 
-  <!-- Ad -->
-  <ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9160117914244177"
-     data-ad-slot="7129714233"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
-  <!-- Show Button -->
-  <button id="showButton" onclick="showGenerator()">Launch Generator</button>
-
-  <!-- Generator Iframe -->
-  <iframe id="generatorFrame" src=""></iframe>
-
-  <!-- Second Ad -->
-  <ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-fb+5w+4e-db+86"
-     data-ad-client="ca-pub-9160117914244177"
-     data-ad-slot="3767252947"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
   <script>
-    function showGenerator() {
-      const iframe = document.getElementById('generatorFrame');
-      iframe.src = "https://codesgen.nerodeadly.workers.dev/";
-      iframe.style.display = 'block';
-      document.getElementById('showButton').style.display = 'none';
-      document.getElementById('welcome').style.display = 'none';
-    }
-
     // Block right-click
     document.addEventListener("contextmenu", e => e.preventDefault());
 
@@ -111,35 +70,15 @@
       }
     });
 
-    // Detect DevTools
+    // Detect DevTools window sizing
     setInterval(() => {
       if (
         window.outerWidth - window.innerWidth > 160 ||
         window.outerHeight - window.innerHeight > 160
       ) {
-        document.body.innerHTML = "<h1>DevTools are blocked.</h1>";
+        document.body.innerHTML = "<h1 style='color:white; text-align:center;'>DevTools are blocked.</h1>";
       }
     }, 1000);
   </script>
-	<script type="text/javascript">
-	atOptions = {
-		'key' : '6eb881e598f0a0da58a74f9789694e56',
-		'format' : 'iframe',
-		'height' : 60,
-		'width' : 468,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//inactionaccompanyingstress.com/6eb881e598f0a0da58a74f9789694e56/invoke.js"></script>
-  <script type="text/javascript">
-	atOptions = {
-		'key' : '2895af1ddbfbe7f02bd8c0314b3df742',
-		'format' : 'iframe',
-		'height' : 50,
-		'width' : 320,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//inactionaccompanyingstress.com/2895af1ddbfbe7f02bd8c0314b3df742/invoke.js"></script>
 </body>
 </html>
