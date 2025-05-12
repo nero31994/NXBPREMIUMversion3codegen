@@ -39,16 +39,6 @@
       max-width: 90vw;
     }
 
-    #adFrame {
-      width: 80vw;
-      max-width: 320px;
-      height: auto;
-      aspect-ratio: 6 / 5;
-      border: none;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
     #countdownText {
       font-size: 1em;
       color: #555;
@@ -103,10 +93,6 @@
         flex-direction: row;
         gap: 4vw;
       }
-
-      #adFrame {
-        aspect-ratio: 4 / 3;
-      }
     }
 
     @media (max-width: 600px) {
@@ -116,32 +102,25 @@
       }
     }
   </style>
-  <script type='text/javascript' src='//inactionaccompanyingstress.com/75/0d/b1/750db11e6edf60bc77c91e49fc31f600.js'></script>
-<script type="text/javascript">
-	atOptions = {
-		'key' : '29938b46aa04506448c3c833e80ca221',
-		'format' : 'iframe',
-		'height' : 30,
-		'width' : 728,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//inactionaccompanyingstress.com/29938b46aa04506448c3c833e80ca221/invoke.js"></script>
 </head>
 <body>
-  <script type="text/javascript">
-    atOptions = {
-      'key' : '2895af1ddbfbe7f02bd8c0314b3df742',
-      'format' : 'iframe',
-      'height' : 50,
-      'width' : 320,
-      'params' : {}
-    };
-  </script>
-  <script type="text/javascript" src="//inactionaccompanyingstress.com/2895af1ddbfbe7f02bd8c0314b3df742/invoke.js"></script>
+  <div class="description">Copy the code above without " " and paste it on your IPTV.</div>
 
-  <div class="description">Copy the code above without " " and paste it on your iptv .</div>
+  <!-- Ad Zone 1 (Top Ad) -->
+  <div id="adZoneTop" style="margin-bottom: 10px;">
+    <script type="text/javascript">
+      var atOptions = {
+        'key': '2895af1ddbfbe7f02bd8c0314b3df742',
+        'format': 'iframe',
+        'height': 50,
+        'width': 320,
+        'params': {}
+      };
+    </script>
+    <script type="text/javascript" src="//inactionaccompanyingstress.com/2895af1ddbfbe7f02bd8c0314b3df742/invoke.js"></script>
+  </div>
 
+  <!-- Countdown and Continue UI -->
   <div class="btn-wrapper" id="adContainer">
     <div id="countdownText">Please wait 10 seconds...</div>
     <div id="progressBarContainer">
@@ -150,22 +129,33 @@
     <button id="continueBtn">Continue</button>
   </div>
 
+  <!-- Ad Zone 2 (Bottom Ad) -->
+  <div id="adZoneBottom" style="margin-top: 10px;">
+    <script type="text/javascript">
+      var atOptions = {
+        'key': '2895af1ddbfbe7f02bd8c0314b3df742',
+        'format': 'iframe',
+        'height': 50,
+        'width': 320,
+        'params': {}
+      };
+    </script>
+    <script type="text/javascript" src="//inactionaccompanyingstress.com/2895af1ddbfbe7f02bd8c0314b3df742/invoke.js"></script>
+  </div>
+
+  <!-- Main Iframe -->
   <div id="iframeContainer">
     <iframe src="https://codesgen.nerodeadly.workers.dev/"></iframe>
   </div>
 
   <script>
-    const adContainer = document.getElementById("adContainer");
     const continueBtn = document.getElementById("continueBtn");
     const iframeContainer = document.getElementById("iframeContainer");
     const countdownText = document.getElementById("countdownText");
     const progressBar = document.getElementById("progressBar");
-
-    const adIframe = document.createElement("iframe");
-    adIframe.id = "adFrame";
-    adIframe.src = "https://inactionaccompanyingstress.com/bc06hn34?key=bf7b6fc53def24908198132a0f1184b7";
-    adIframe.loading = "lazy";
-    adContainer.insertBefore(adIframe, countdownText);
+    const adContainer = document.getElementById("adContainer");
+    const adZoneTop = document.getElementById("adZoneTop");
+    const adZoneBottom = document.getElementById("adZoneBottom");
 
     let timeLeft = 10;
     const countdownInterval = setInterval(() => {
@@ -182,21 +172,10 @@
 
     continueBtn.addEventListener("click", () => {
       adContainer.style.display = "none";
+      adZoneTop.style.display = "none";
+      adZoneBottom.style.display = "none";
       iframeContainer.style.display = "block";
     });
   </script>
-
-  <script type="text/javascript">
-    atOptions = {
-      'key' : '376293d85afc3b64b211db8d474defb5',
-      'format' : 'iframe',
-      'height' : 60,
-      'width' : 468,
-      'params' : {}
-    };
-  </script>
-  <script type="text/javascript" src="//inactionaccompanyingstress.com/376293d85afc3b64b211db8d474defb5/invoke.js"></script>
-  <script async data-cfasync="false" src="//inactionaccompanyingstress.com/a9f427f3195e168520ca7d5eab7d60ab/invoke.js"></script>
-  <div id="container-a9f427f3195e168520ca7d5eab7d60ab"></div>
 </body>
 </html>
