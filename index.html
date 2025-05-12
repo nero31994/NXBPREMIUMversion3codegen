@@ -27,22 +27,16 @@
     }
 
     #iframeContainer {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 9999;
-}
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+    }
 
-#iframeContainer iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-    iframe {
+    #iframeContainer iframe {
       width: 100%;
       height: 100%;
       border: none;
@@ -107,21 +101,42 @@
       margin-top: 10px;
     }
   </style>
-	<script type="text/javascript">
-	atOptions = {
-		'key' : '376293d85afc3b64b211db8d474defb5',
-		'format' : 'iframe',
-		'height' : 60,
-		'width' : 468,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//inactionaccompanyingstress.com/376293d85afc3b64b211db8d474defb5/invoke.js"></script>
 </head>
 <body>
   <div id="adContainer" class="glass-ad">
     <h2>Please watch this short ad</h2>
-    <iframe src="https://inactionaccompanyingstress.com/bc06hn34?key=bf7b6fc53def24908198132a0f1184b7" width="300" height="250" frameborder="0" scrolling="no"></iframe>
+
+    <!-- Top Ad Block -->
+    <div style="margin-bottom: 15px;">
+      <script type="text/javascript">
+        atOptions = {
+          'key': '376293d85afc3b64b211db8d474defb5',
+          'format': 'iframe',
+          'height': 60,
+          'width': 468,
+          'params': {}
+        };
+      </script>
+      <script type="text/javascript" src="//inactionaccompanyingstress.com/376293d85afc3b64b211db8d474defb5/invoke.js"></script>
+    </div>
+
+    <!-- Middle Rotating Ad Block -->
+    <div id="adZoneMiddle" style="margin: 15px 0;"></div>
+
+    <!-- Bottom Ad Block -->
+    <div style="margin-top: 15px;">
+      <script type="text/javascript">
+        atOptions = {
+          'key': '6eb881e598f0a0da58a74f9789694e56',
+          'format': 'iframe',
+          'height': 60,
+          'width': 468,
+          'params': {}
+        };
+      </script>
+      <script type="text/javascript" src="//inactionaccompanyingstress.com/6eb881e598f0a0da58a74f9789694e56/invoke.js"></script>
+    </div>
+
     <p class="timer">Loading... <span id="countdown">20</span> seconds</p>
     <div class="btn-wrapper">
       <button id="continueBtn">Continue</button>
@@ -134,6 +149,7 @@
   </div>
 
   <script>
+    // Countdown Logic
     let countdown = 20;
     const countdownEl = document.getElementById("countdown");
     const continueBtn = document.getElementById("continueBtn");
@@ -157,7 +173,7 @@
       iframeContainer.style.display = "block";
     });
 
-    // Optional: Disable dev tools
+    // Optional: Disable Dev Tools
     document.addEventListener("contextmenu", e => e.preventDefault());
     document.addEventListener("keydown", function (e) {
       if (
@@ -177,16 +193,34 @@
         document.body.innerHTML = "<h1 style='color:white; text-align:center;'>DevTools are blocked.</h1>";
       }
     }, 1000);
+
+    // Rotating Ad Logic
+    const adScripts = [
+      {
+        key: 'a1b2c3d4e5f6g7h8i9j0', // Replace with a valid ad key
+        src: '//inactionaccompanyingstress.com/a1b2c3d4e5f6g7h8i9j0/invoke.js'
+      },
+      {
+        key: '1a2b3c4d5e6f7g8h9i0j', // Replace with a valid ad key
+        src: '//inactionaccompanyingstress.com/1a2b3c4d5e6f7g8h9i0j/invoke.js'
+      }
+    ];
+
+    let currentAd = 0;
+    function loadAd() {
+      const ad = adScripts[currentAd];
+      const container = document.getElementById('adZoneMiddle');
+      container.innerHTML = '';
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = ad.src;
+      script.async = true;
+      script.setAttribute('data-cfasync', 'false');
+      container.appendChild(script);
+      currentAd = (currentAd + 1) % adScripts.length;
+    }
+    loadAd();
+    setInterval(loadAd, 10000);
   </script>
-	<script type="text/javascript">
-	atOptions = {
-		'key' : '6eb881e598f0a0da58a74f9789694e56',
-		'format' : 'iframe',
-		'height' : 60,
-		'width' : 468,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//inactionaccompanyingstress.com/6eb881e598f0a0da58a74f9789694e56/invoke.js"></script>
 </body>
 </html>
