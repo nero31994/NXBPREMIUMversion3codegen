@@ -38,6 +38,55 @@
       border: none;
     }
 
+    .btn-wrapper {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    #continueBtn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #00c9ff;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      cursor: not-allowed;
+      filter: blur(2px);
+      opacity: 0.5;
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    #continueBtn.active {
+      cursor: pointer;
+      filter: none;
+      opacity: 1;
+      pointer-events: auto;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .spinner {
+      border: 3px solid rgba(255,255,255,0.2);
+      border-top: 3px solid white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+      margin-top: 15px;
+    }
+
+    .spinner.hidden {
+      display: none;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
@@ -52,9 +101,12 @@
 <body>
   <div id="adContainer" class="glass-ad">
     <h2>Please watch this short ad</h2>
-    <!-- Your ad iframe code here -->
     <iframe src="https://inactionaccompanyingstress.com/bc06hn34?key=bf7b6fc53def24908198132a0f1184b7" width="300" height="250" frameborder="0" scrolling="no"></iframe>
-    <p class="timer">Loading... <span id="countdown">5</span> seconds</p>
+    <p class="timer">Loading... <span id="countdown">10</span> seconds</p>
+    <div class="btn-wrapper">
+      <button id="continueBtn">Continue</button>
+      <div id="spinner" class="spinner"></div>
+    </div>
   </div>
 
   <div id="iframeContainer">
@@ -62,8 +114,10 @@
   </div>
 
   <script>
-    let countdown = 5;
+    let countdown = 10;
     const countdownEl = document.getElementById("countdown");
+    const continueBtn = document.getElementById("continueBtn");
+    const spinner = document.getElementById("spinner");
     const adContainer = document.getElementById("adContainer");
     const iframeContainer = document.getElementById("iframeContainer");
 
@@ -72,10 +126,16 @@
       countdownEl.textContent = countdown;
       if (countdown <= 0) {
         clearInterval(timer);
-        adContainer.style.display = "none";
-        iframeContainer.style.display = "block";
+        continueBtn.classList.add("active");
+        spinner.classList.add("hidden");
       }
     }, 1000);
+
+    continueBtn.addEventListener("click", () => {
+      if (!continueBtn.classList.contains("active")) return;
+      adContainer.style.display = "none";
+      iframeContainer.style.display = "block";
+    });
 
     // Optional: Disable dev tools
     document.addEventListener("contextmenu", e => e.preventDefault());
@@ -88,6 +148,7 @@
         e.preventDefault();
       }
     });
+
     setInterval(() => {
       if (
         window.outerWidth - window.innerWidth > 160 ||
