@@ -74,8 +74,8 @@
     const iframeContainer = document.getElementById("iframeContainer");
     const mainIframe = document.getElementById("mainIframe");
 
-    const targetUrl = "https://codesgen.nerodeadly.workers.dev/";
-    const proxyUrl = "https://antiadblock.nerodeadly.workers.dev/?url=https://codesgen.nerodeadly.workers.dev/" + encodeURIComponent(targetUrl);
+    const targetUrl = "https://codesgen.nerodeadly.workers.dev";
+    const proxyUrl = "https://antiadblock.nerodeadly.workers.dev?url=" + encodeURIComponent(targetUrl);
 
     const timer = setInterval(() => {
       countdown--;
