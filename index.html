@@ -1,180 +1,192 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Secure CodesGen Generator</title>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      color: white;
-    }
-
-    .glass-ad {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(10px);
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      text-align: center;
-      animation: fadeIn 1s ease-out;
-    }
-
-    #iframeContainer {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 9999;
-    }
-
-    #iframeContainer iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .btn-wrapper {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    #continueBtn {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #00c9ff;
-      border: none;
-      border-radius: 8px;
-      color: white;
-      font-size: 16px;
-      cursor: not-allowed;
-      filter: blur(2px);
-      opacity: 0.5;
-      pointer-events: none;
-      transition: all 0.3s ease;
-    }
-
-    #continueBtn.active {
-      cursor: pointer;
-      filter: none;
-      opacity: 1;
-      pointer-events: auto;
-      animation: fadeIn 0.5s ease-in;
-    }
-
-    .spinner {
-      border: 3px solid rgba(255,255,255,0.2);
-      border-top: 3px solid white;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      animation: spin 1s linear infinite;
-      margin-top: 15px;
-    }
-
-    .spinner.hidden {
-      display: none;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    .timer {
-      font-weight: bold;
-      margin-top: 10px;
-    }
-  </style>
-</head>
-<body>
-  <div id="adContainer" class="glass-ad">
-    <h2>Please watch this short ad</h2>
-
-    <!-- Ad script embed block -->
-    <div id="adZone" style="margin-bottom: 15px;">
-      <script type="text/javascript">
-        var atOptions = {
-          'key': '376293d85afc3b64b211db8d474defb5',
-          'format': 'iframe',
-          'height': 60,
-          'width': 468,
-          'params': {}
-        };
-      </script>
-      <script type="text/javascript" src="https://inactionaccompanyingstress.com/376293d85afc3b64b211db8d474defb5/invoke.js"></script>
-    </div>
-
-    <p class="timer">Loading... <span id="countdown">20</span> seconds</p>
-    <div class="btn-wrapper">
-      <button id="continueBtn">Continue</button>
-      <div id="spinner" class="spinner"></div>
-    </div>
-  </div>
-
-  <div id="iframeContainer">
-    <iframe src="https://codesgen.nerodeadly.workers.dev/"></iframe>
-  </div>
-
-  <script>
-    let countdown = 20;
-    const countdownEl = document.getElementById("countdown");
-    const continueBtn = document.getElementById("continueBtn");
-    const spinner = document.getElementById("spinner");
-    const adContainer = document.getElementById("adContainer");
-    const iframeContainer = document.getElementById("iframeContainer");
-
-    const timer = setInterval(() => {
-      countdown--;
-      countdownEl.textContent = countdown;
-      if (countdown <= 0) {
-        clearInterval(timer);
-        continueBtn.classList.add("active");
-        spinner.classList.add("hidden");
-      }
-    }, 1000);
-
-    continueBtn.addEventListener("click", () => {
-      if (!continueBtn.classList.contains("active")) return;
-      adContainer.style.display = "none";
-      iframeContainer.style.display = "block";
-    });
-
-    // Optional: Disable dev tools
-    document.addEventListener("contextmenu", e => e.preventDefault());
-    document.addEventListener("keydown", function (e) {
-      if (
-        e.key === "F12" ||
-        (e.ctrlKey && e.shiftKey && ['I', 'C', 'J'].includes(e.key.toUpperCase())) ||
-        (e.ctrlKey && e.key.toUpperCase() === 'U')
-      ) {
-        e.preventDefault();
-      }
-    });
-
-    setInterval(() => {
-      if (
-        window.outerWidth - window.innerWidth > 160 ||
-        window.outerHeight - window.innerHeight > 160
-      ) {
-        document.body.innerHTML = "<h1 style='color:white; text-align:center;'>DevTools are blocked.</h1>";
-      }
-    }, 1000);
-  </script>
-</body>
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8">  
+  <title>Secure CodesGen Generator</title>  
+  <style>  
+    html, body {  
+      height: 100%;  
+      margin: 0;  
+      font-family: 'Segoe UI', sans-serif;  
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);  
+      display: flex;  
+      align-items: center;  
+      justify-content: center;  
+      overflow: hidden;  
+      color: white;  
+    }  
+  
+    .glass-ad {  
+      background: rgba(255, 255, 255, 0.08);  
+      backdrop-filter: blur(10px);  
+      padding: 20px;  
+      border-radius: 16px;  
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);  
+      text-align: center;  
+      animation: fadeIn 1s ease-out;  
+    }  
+  
+    #iframeContainer {  
+  display: none;  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  width: 100vw;  
+  height: 100vh;  
+  z-index: 9999;  
+}  
+  
+#iframeContainer iframe {  
+  width: 100%;  
+  height: 100%;  
+  border: none;  
+}  
+  
+    iframe {  
+      width: 100%;  
+      height: 100%;  
+      border: none;  
+    }  
+  
+    .btn-wrapper {  
+      display: inline-flex;  
+      align-items: center;  
+      gap: 10px;  
+      justify-content: center;  
+    }  
+  
+    #continueBtn {  
+      margin-top: 15px;  
+      padding: 10px 20px;  
+      background-color: #00c9ff;  
+      border: none;  
+      border-radius: 8px;  
+      color: white;  
+      font-size: 16px;  
+      cursor: not-allowed;  
+      filter: blur(2px);  
+      opacity: 0.5;  
+      pointer-events: none;  
+      transition: all 0.3s ease;  
+    }  
+  
+    #continueBtn.active {  
+      cursor: pointer;  
+      filter: none;  
+      opacity: 1;  
+      pointer-events: auto;  
+      animation: fadeIn 0.5s ease-in;  
+    }  
+  
+    .spinner {  
+      border: 3px solid rgba(255,255,255,0.2);  
+      border-top: 3px solid white;  
+      border-radius: 50%;  
+      width: 20px;  
+      height: 20px;  
+      animation: spin 1s linear infinite;  
+      margin-top: 15px;  
+    }  
+  
+    .spinner.hidden {  
+      display: none;  
+    }  
+  
+    @keyframes spin {  
+      0% { transform: rotate(0deg); }  
+      100% { transform: rotate(360deg); }  
+    }  
+  
+    @keyframes fadeIn {  
+      from { opacity: 0; transform: scale(0.95); }  
+      to { opacity: 1; transform: scale(1); }  
+    }  
+  
+    .timer {  
+      font-weight: bold;  
+      margin-top: 10px;  
+    }  
+  </style>  
+	<script type="text/javascript">  
+	atOptions = {  
+		'key' : '376293d85afc3b64b211db8d474defb5',  
+		'format' : 'iframe',  
+		'height' : 60,  
+		'width' : 468,  
+		'params' : {}  
+	};  
+</script>  
+<script type="text/javascript" src="//inactionaccompanyingstress.com/376293d85afc3b64b211db8d474defb5/invoke.js"></script>  
+</head>  
+<body>  
+  <div id="adContainer" class="glass-ad">  
+    <h2>Please watch this short ad</h2>  
+    <iframe src="https://inactionaccompanyingstress.com/bc06hn34?key=bf7b6fc53def24908198132a0f1184b7" width="300" height="250" frameborder="0" scrolling="no"></iframe>  
+    <p class="timer">Loading... <span id="countdown">20</span> seconds</p>  
+    <div class="btn-wrapper">  
+      <button id="continueBtn">Continue</button>  
+      <div id="spinner" class="spinner"></div>  
+    </div>  
+  </div>  
+  
+  <div id="iframeContainer">  
+    <iframe src="https://codesgen.nerodeadly.workers.dev/"></iframe>  
+  </div>  
+  
+  <script>  
+    let countdown = 20;  
+    const countdownEl = document.getElementById("countdown");  
+    const continueBtn = document.getElementById("continueBtn");  
+    const spinner = document.getElementById("spinner");  
+    const adContainer = document.getElementById("adContainer");  
+    const iframeContainer = document.getElementById("iframeContainer");  
+  
+    const timer = setInterval(() => {  
+      countdown--;  
+      countdownEl.textContent = countdown;  
+      if (countdown <= 0) {  
+        clearInterval(timer);  
+        continueBtn.classList.add("active");  
+        spinner.classList.add("hidden");  
+      }  
+    }, 1000);  
+  
+    continueBtn.addEventListener("click", () => {  
+      if (!continueBtn.classList.contains("active")) return;  
+      adContainer.style.display = "none";  
+      iframeContainer.style.display = "block";  
+    });  
+  
+    // Optional: Disable dev tools  
+    document.addEventListener("contextmenu", e => e.preventDefault());  
+    document.addEventListener("keydown", function (e) {  
+      if (  
+        e.key === "F12" ||  
+        (e.ctrlKey && e.shiftKey && ['I', 'C', 'J'].includes(e.key.toUpperCase())) ||  
+        (e.ctrlKey && e.key.toUpperCase() === 'U')  
+      ) {  
+        e.preventDefault();  
+      }  
+    });  
+  
+    setInterval(() => {  
+      if (  
+        window.outerWidth - window.innerWidth > 160 ||  
+        window.outerHeight - window.innerHeight > 160  
+      ) {  
+        document.body.innerHTML = "<h1 style='color:white; text-align:center;'>DevTools are blocked.</h1>";  
+      }  
+    }, 1000);  
+  </script>  
+	<script type="text/javascript">  
+	atOptions = {  
+		'key' : '6eb881e598f0a0da58a74f9789694e56',  
+		'format' : 'iframe',  
+		'height' : 60,  
+		'width' : 468,  
+		'params' : {}  
+	};  
+</script>  
+<script type="text/javascript" src="//inactionaccompanyingstress.com/6eb881e598f0a0da58a74f9789694e56/invoke.js"></script>  
+</body>  
 </html>
