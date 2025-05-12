@@ -2,32 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=0.6">
   <title>Secure CodesGen Generator</title>
   <style>
     html, body {
       height: 100%;
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      background-color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      color: white;
+      color: #222;
       text-align: center;
     }
 
     .description {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: #f0f0f0;
       padding: 1em;
       margin-bottom: 2vh;
       border-radius: 10px;
       font-weight: bold;
       max-width: 90vw;
-      color: #fff;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      color: #333;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
     .btn-wrapper {
@@ -46,19 +46,19 @@
       aspect-ratio: 6 / 5;
       border: none;
       border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
     #countdownText {
       font-size: 1em;
-      color: #ccc;
+      color: #555;
     }
 
     #progressBarContainer {
       width: 80%;
       max-width: 300px;
       height: 12px;
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: #ddd;
       border-radius: 8px;
       overflow: hidden;
     }
@@ -119,15 +119,16 @@
 </head>
 <body>
   <script type="text/javascript">
-	atOptions = {
-		'key' : '2895af1ddbfbe7f02bd8c0314b3df742',
-		'format' : 'iframe',
-		'height' : 50,
-		'width' : 320,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//inactionaccompanyingstress.com/2895af1ddbfbe7f02bd8c0314b3df742/invoke.js"></script>
+    atOptions = {
+      'key' : '2895af1ddbfbe7f02bd8c0314b3df742',
+      'format' : 'iframe',
+      'height' : 50,
+      'width' : 320,
+      'params' : {}
+    };
+  </script>
+  <script type="text/javascript" src="//inactionaccompanyingstress.com/2895af1ddbfbe7f02bd8c0314b3df742/invoke.js"></script>
+
   <div class="description">Pop ads will appear. Click back when the browser opens a new tab.</div>
 
   <div class="btn-wrapper" id="adContainer">
@@ -149,14 +150,12 @@
     const countdownText = document.getElementById("countdownText");
     const progressBar = document.getElementById("progressBar");
 
-    // Add ad iframe
     const adIframe = document.createElement("iframe");
     adIframe.id = "adFrame";
     adIframe.src = "https://inactionaccompanyingstress.com/bc06hn34?key=bf7b6fc53def24908198132a0f1184b7";
     adIframe.loading = "lazy";
     adContainer.insertBefore(adIframe, countdownText);
 
-    // Countdown logic
     let timeLeft = 10;
     const countdownInterval = setInterval(() => {
       timeLeft--;
