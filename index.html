@@ -4,17 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=0.5">
   <title>Secure CodesGen Generator</title>
-  <script type="text/javascript">
-	atOptions = {
-		'key' : '29938b46aa04506448c3c833e80ca221',
-		'format' : 'iframe',
-		'height' : 90,
-		'width' : 728,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//inactionaccompanyingstress.com/29938b46aa04506448c3c833e80ca221/invoke.js"></script>
-<style>
+  <style>
     html, body {
       height: 100%;
       margin: 0;
@@ -28,7 +18,6 @@
       color: #222;
       text-align: center;
     }
-
     .description {
       background-color: #f0f0f0;
       padding: 1em;
@@ -39,7 +28,6 @@
       color: #333;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
     .btn-wrapper {
       display: flex;
       flex-direction: column;
@@ -48,29 +36,7 @@
       padding: 2vh;
       max-width: 90vw;
     }
-
-    #countdownText {
-      font-size: 1em;
-      color: #555;
-    }
-
-    #progressBarContainer {
-      width: 80%;
-      max-width: 300px;
-      height: 12px;
-      background-color: #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    #progressBar {
-      height: 100%;
-      width: 0%;
-      background: #00c9ff;
-      transition: width 1s linear;
-    }
-
-    #continueBtn {
+    .btn {
       padding: 1em 2em;
       background-color: #00c9ff;
       border: none;
@@ -79,9 +45,29 @@
       font-size: 1.2em;
       cursor: pointer;
       transition: all 0.3s ease;
+    }
+    .btn:disabled {
+      background-color: #999;
+      cursor: not-allowed;
+    }
+    #progressBarContainer {
+      width: 80%;
+      max-width: 300px;
+      height: 12px;
+      background-color: #ddd;
+      border-radius: 8px;
+      overflow: hidden;
       display: none;
     }
-
+    #progressBar {
+      height: 100%;
+      width: 0%;
+      background: #00c9ff;
+      transition: width 1s linear;
+    }
+    #continueBtn {
+      display: none;
+    }
     #iframeContainer {
       display: none;
       position: fixed;
@@ -91,123 +77,81 @@
       height: 100vh;
       z-index: 9999;
     }
-
     #iframeContainer iframe {
       width: 100%;
       height: 100%;
       border: none;
     }
-
     @media (orientation: landscape) {
       .btn-wrapper {
         flex-direction: row;
         gap: 4vw;
       }
     }
-
     @media (max-width: 600px) {
-      #continueBtn {
+      .btn {
         font-size: 1em;
         padding: 0.8em 1.5em;
       }
     }
   </style>
-  <script async="async" data-cfasync="false" src="//inactionaccompanyingstress.com/a9f427f3195e168520ca7d5eab7d60ab/invoke.js"></script>
-<div id="container-a9f427f3195e168520ca7d5eab7d60ab"></div>
 </head>
 <body>
   <div class="description">Copy the code above without " " and paste it on your IPTV.</div>
 
-  <!-- Ad Zone 1 (Top Ad) -->
-  <div id="adZoneTop" style="margin-bottom: 10px;">
-    <script type="text/javascript">
-      var atOptions = {
-        'key': '2895af1ddbfbe7f02bd8c0314b3df742',
-        'format': 'iframe',
-        'height': 50,
-        'width': 320,
-        'params': {}
-      };
-    </script>
-    <script type="text/javascript" src="//inactionaccompanyingstress.com/2895af1ddbfbe7f02bd8c0314b3df742/invoke.js"></script>
-  </div>
-
-  <!-- Countdown and Continue UI -->
   <div class="btn-wrapper" id="adContainer">
-    <div id="countdownText">Please wait 10 seconds...</div>
+    <button class="btn" id="visitAdBtn">1. Visit Ad</button>
+    <button class="btn" id="confirmVisitBtn" disabled>2. I Visited the Ad</button>
+    <div id="countdownText" style="display: none;">Please wait 10 seconds...</div>
     <div id="progressBarContainer">
       <div id="progressBar"></div>
     </div>
-    <button id="continueBtn">Continue</button>
+    <button class="btn" id="continueBtn">Continue</button>
   </div>
 
-  <!-- Ad Zone 2 (Bottom Ad) -->
-  <div id="adZoneBottom" style="margin-top: 10px;">
-    <script type="text/javascript">
-      var atOptions = {
-        'key': '2895af1ddbfbe7f02bd8c0314b3df742',
-        'format': 'iframe',
-        'height': 50,
-        'width': 320,
-        'params': {}
-      };
-    </script>
-    <script type="text/javascript" src="//inactionaccompanyingstress.com/2895af1ddbfbe7f02bd8c0314b3df742/invoke.js"></script>
-  </div>
-
-  <!-- Main Iframe -->
   <div id="iframeContainer">
     <iframe src="https://codesgen.nerodeadly.workers.dev/"></iframe>
   </div>
 
   <script>
+    const visitAdBtn = document.getElementById("visitAdBtn");
+    const confirmVisitBtn = document.getElementById("confirmVisitBtn");
     const continueBtn = document.getElementById("continueBtn");
-    const iframeContainer = document.getElementById("iframeContainer");
     const countdownText = document.getElementById("countdownText");
     const progressBar = document.getElementById("progressBar");
+    const progressBarContainer = document.getElementById("progressBarContainer");
     const adContainer = document.getElementById("adContainer");
-    const adZoneTop = document.getElementById("adZoneTop");
-    const adZoneBottom = document.getElementById("adZoneBottom");
+    const iframeContainer = document.getElementById("iframeContainer");
 
-    let timeLeft = 10;
-    const countdownInterval = setInterval(() => {
-      timeLeft--;
-      progressBar.style.width = `${(10 - timeLeft) * 10}%`;
-      countdownText.textContent = `Please wait ${timeLeft} second${timeLeft !== 1 ? 's' : ''}...`;
-      if (timeLeft <= 0) {
-        clearInterval(countdownInterval);
-        countdownText.style.display = "none";
-        progressBar.parentElement.style.display = "none";
-        continueBtn.style.display = "inline-block";
-      }
-    }, 1000);
+    visitAdBtn.addEventListener("click", () => {
+      window.open("https://inactionaccompanyingstress.com/bc06hn34?key=bf7b6fc53def24908198132a0f1184b7", "_blank");
+      confirmVisitBtn.disabled = false;
+    });
+
+    confirmVisitBtn.addEventListener("click", () => {
+      confirmVisitBtn.disabled = true;
+      visitAdBtn.disabled = true;
+      countdownText.style.display = "block";
+      progressBarContainer.style.display = "block";
+
+      let timeLeft = 10;
+      const countdownInterval = setInterval(() => {
+        timeLeft--;
+        progressBar.style.width = `${(10 - timeLeft) * 10}%`;
+        countdownText.textContent = `Please wait ${timeLeft} second${timeLeft !== 1 ? 's' : ''}...`;
+        if (timeLeft <= 0) {
+          clearInterval(countdownInterval);
+          countdownText.style.display = "none";
+          progressBarContainer.style.display = "none";
+          continueBtn.style.display = "inline-block";
+        }
+      }, 1000);
+    });
 
     continueBtn.addEventListener("click", () => {
       adContainer.style.display = "none";
-      adZoneTop.style.display = "none";
-      adZoneBottom.style.display = "none";
       iframeContainer.style.display = "block";
     });
   </script>
-  <script type="text/javascript">
-	atOptions = {
-		'key' : '29938b46aa04506448c3c833e80ca221',
-		'format' : 'iframe',
-		'height' : 90,
-		'width' : 728,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//inactionaccompanyingstress.com/29938b46aa04506448c3c833e80ca221/invoke.js"></script>
-<script type="text/javascript">
-	atOptions = {
-		'key' : '6eb881e598f0a0da58a74f9789694e56',
-		'format' : 'iframe',
-		'height' : 60,
-		'width' : 468,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//inactionaccompanyingstress.com/6eb881e598f0a0da58a74f9789694e56/invoke.js"></script>
 </body>
 </html>
